@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <object class="GtkListStore" id="liststore_prio">
+    <columns>
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Niski</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Sredni</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Wazne</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="liststore_sort">
+    <columns>
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Priorytet: Wazne-Niskie</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Priorytet: Niskie-Wazne</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Nazwa: A-Z</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Nazwa: Z-A</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkWindow" id="window_main">
+    <property name="can-focus">False</property>
+    <property name="title" translatable="yes">Lista Zadan Pro</property>
+    <property name="default-width">450</property>
+    <property name="default-height">600</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">15</property>
+        <property name="margin-start">15</property>
+        <property name="margin-end">15</property>
+        <property name="margin-top">15</property>
+        <property name="margin-bottom">15</property>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="spacing">10</property>
+            <child>
+              <object class="GtkSearchEntry" id="entry_search">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="primary-icon-name">edit-find-symbolic</property>
+                <property name="primary-icon-activatable">False</property>
+                <property name="primary-icon-sensitive">False</property>
+                <property name="placeholder-text" translatable="yes">Szukaj...</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBox" id="combo_sort">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="model">liststore_sort</property>
+                <property name="active">0</property>
+                <child>
+                  <object class="GtkCellRendererText"/>
+                  <attributes>
+                    <attribute name="text">0</attribute>
+                  </attributes>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="spacing">5</property>
+            <child>
+              <object class="GtkEntry" id="entry_text">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="placeholder-text" translatable="yes">Nowe zadanie</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBox" id="combo_priority">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="model">liststore_prio</property>
+                <property name="active">0</property>
+                <child>
+                  <object class="GtkCellRendererText"/>
+                  <attributes>
+                    <attribute name="text">0</attribute>
+                  </attributes>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_add">
+                <property name="label" translatable="yes">+</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="shadow-type">in</property>
+            <property name="min-content-height">300</property>
+            <child>
+              <object class="GtkListBox" id="list_box">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="selection-mode">none</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_del">
+            <property name="label" translatable="yes">Usun wykonane</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
